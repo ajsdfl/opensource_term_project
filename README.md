@@ -16,7 +16,7 @@
 
 **1. 환경 설정 (패키지 설치)**
 터미널을 열고 아래 명령어를 입력하여 필요한 라이브러리(`transformers` 등)를 설치합니다.
-pip install -r requirements.txt
+(pip install -r requirements.txt)
 
 **2. 입력 파일 준비**
 요약하고 싶은 영어 뉴스 기사나 텍스트를 복사하여 원하는 이름 파일로 저장합니다. 이 파일은 main.py와 같은 폴더에 있어야 합니다.
