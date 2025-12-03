@@ -16,7 +16,6 @@
 
 **1. 환경 설정 (패키지 설치)**
 터미널을 열고 아래 명령어를 입력하여 필요한 라이브러리(`transformers` 등)를 설치합니다.
-```bash
 pip install -r requirements.txt
 
 **2. 입력 파일 준비**
@@ -24,7 +23,6 @@ pip install -r requirements.txt
 
 **3. 프로그램 실행**
 터미널에 아래 명령어를 입력하여 프로그램을 시작합니다.
-```bash
 python main.py
 
 **4. 파일 경로 입력**
