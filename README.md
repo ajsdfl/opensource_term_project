@@ -9,16 +9,16 @@
 웹상의 영어 뉴스 기사를 복사하여 텍스트 파일로 준비합니다.
 | 뉴스 기사 원문 (Web) | 입력 파일 저장 (txt) |
 | :---: | :---: |
-| ![뉴스원문](./input1.png) | ![입력파일](./input2.png) |
+| ![뉴스원문](./images/input1.png) | ![입력파일](./images/input2.png) |
 
 ### [Step 2] 프로그램 실행 및 결과 (Process & Output)
 터미널에서 프로그램을 실행하면 번역과 요약이 진행됩니다.
-![실행화면1](./result1.png)
-![실행화면2](./result2.png)
+![실행화면1](./images/result1.png)
+![실행화면2](./images/result2.png)
 
 ### [Step 3] 최종 결과 파일 (Result)
 실행이 완료되면 요약된 내용이 파일로 자동 저장됩니다.
-![결과파일](./result3.png)
+![결과파일](./images/result3.png)
 
 ## 3. 사용한 패키지 및 버전
 * Python
