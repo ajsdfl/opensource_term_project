@@ -29,17 +29,14 @@ python main.py
 프로그램이 실행되면 파일명을 묻는 메시지가 나옵니다. 아까 준비한 파일명(예: news.txt)을 입력하고 엔터를 누릅니다.
 
 **5. 결과 확인**
-잠시 기다리면 화면에 3줄 요약 및 한글 번역 결과가 출력됩니다. 같은 폴더에 result.txt 파일이 생성되어 결과를 저장합니다.
+잠시 기다리면 화면에 3줄 요약 및 한글 번역 결과가 출력됩니다. 같은 폴더에 summary.txt 파일이 생성되어 결과를 저장합니다.
 
 ## 5. 참고 자료
 이 프로젝트는 다음의 오픈소스 라이브러리와 사전 학습된 모델(Pre-trained Models)을 활용하여 제작되었습니다.
 
-* **Hugging Face Transformers Library**
-  * 공식 문서: https://huggingface.co/docs/transformers/index
   
 * **사용 모델 (Models Used)**
-  * 요약 모델 (Bart-Large-CNN): https://huggingface.co/facebook/bart-large-cnn
-  * 번역 모델 (Opus-MT-En-Ko): https://huggingface.co/Helsinki-NLP/opus-mt-en-ko
-
+  * 요약 모델: KoBART Summarization (https://huggingface.co/digit82/kobart-summarization)
+  * 번역 모델: NLLB-200 (https://huggingface.co/facebook/nllb-200-distilled-600M)
 * **Python Official Documentation**
   * https://docs.python.org/3/

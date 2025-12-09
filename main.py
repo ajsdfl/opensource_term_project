@@ -1,71 +1,59 @@
-import os
-import sys
+"""
+main.py
 
-# 지금은 에러 방지를 위해 try-except로 감싸둡니다.
-try:
-    import translator  # 번역 담당 파일
-    import summarizer  # 요약 담당 파일
-except ImportError:
-    print("아직 없습니다.")
-    pass
+- 영어 뉴스 기사 텍스트를 입력받아
+  1) translator.py로 한글 번역
+  2) summarizer.py로 한글 3줄 요약
 
-def read_text_file(file_path):
-    """
-    텍스트 파일(.txt)을 읽어서 내용을 문자열로 반환하는 함수
-    """
-    if not os.path.exists(file_path):
-        print(f"[Error] 파일을 찾을 수 없습니다: {file_path}")
-        return None
-    
+실행:
+    python main.py
+"""
+
+from summarizer import summarize_text
+from translator import translate_text
+
+
+def load_article(path: str) -> str:
+    """텍스트 파일에서 기사 내용 읽기"""
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-            return content
-    except Exception as e:
-        print(f"[Error] 파일 읽기 오류: {e}")
-        return None
+        with open(path, "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        return ""
 
-def main():
-    print("=== 3줄 요약 번역기 ===")
-    
-    # 1. 파일 입력 받기
-    file_path = input("요약할 영어 기사 텍스트 파일을 입력하세요 (예: news.txt): ").strip()
-    
-    original_text = read_text_file(file_path)
-    
-    if not original_text:
-        print("프로그램을 종료합니다.")
-        return
 
-    print("\n[1] 파일 읽기 성공!")
-    print(f"내용 길이: {len(original_text)} 자")
+def save_summary(path: str, summary: str):
+    """요약 결과 저장"""
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(summary)
 
-    # 2. 번역 (팀원 B 파트)
-    translated_text = "아직 번역 기능이 구현되지 않음"
-    if 'translator' in sys.modules and hasattr(translator, 'translate_text'):
-        print("\n[3] 번역 진행 중...")
-        translated_text = translator.translate_text(summary_text)
-    else:
-        print("\n[Pass] 번역 모듈이 비어있습니다.")
-    
-    # 3. 요약 (팀원 C 파트)
-    summary_text = "아직 요약 기능이 구현되지 않음" 
-    if 'summarizer' in sys.modules and hasattr(summarizer, 'summarize_text'):
-        print("\n[2] 요약 진행 중...")
-        summary_text = summarizer.summarize_text(original_text)
-    else:
-        print("\n[Pass] 요약 모듈이 비어있습니다.")
-
-    # 4. 결과 출력 및 저장
-    print("-" * 30)
-    print("[최종 결과]")
-    print(translated_text)
-    print("-" * 30)
-
-    # 결과 파일 저장
-    with open("result.txt", "w", encoding="utf-8") as f:
-        f.write(translated_text)
-    print("결과가 result.txt에 저장되었습니다.")
 
 if __name__ == "__main__":
-    main()
+    # 1. 영어 기사 파일 입력
+    article_path = input("영어 뉴스 기사 파일명을 입력하세요 (예: news.txt): ").strip()
+    article_text = load_article(article_path)
+
+    if not article_text.strip():
+        print("❌ 기사 파일을 찾을 수 없거나 내용이 비어 있습니다.")
+        raise SystemExit
+
+    # 2. 한글 번역
+    print("\n[1/2] 기사 번역 중...")
+    translated_text = translate_text(article_text)
+
+    # 💡 추가된 부분: 번역된 기사 출력
+    print("\n=== 번역된 기사 (한국어) ===")
+    print(translated_text)
+    print("=============================")
+
+    # 3. 한글 3줄 요약
+    print("\n[2/2] 3줄 요약 중...")
+    summary = summarize_text(translated_text, num_sentences=3)
+
+    # 4. 결과 출력
+    print("\n=== 3줄 요약 결과 ===")
+    print(summary)
+
+    # 5. 결과 저장
+    save_summary("summary.txt", summary)
+    print("\n✅ summary.txt 파일로 저장 완료")
